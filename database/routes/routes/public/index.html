@@ -1,0 +1,35 @@
+<h1>Leon Student Tracker</h1>
+
+<table id="results"></table>
+
+<script>
+
+async function load(){
+
+const res = await fetch("/api/students")
+
+const students = await res.json()
+
+const table = document.getElementById("results")
+
+table.innerHTML=""
+
+students.forEach(s=>{
+
+table.innerHTML += `
+<tr>
+<td>${s.rank}</td>
+<td>${s.name}</td>
+<td>${s.grade}</td>
+<td>${s.total}</td>
+<td>${s.mean.toFixed(2)}</td>
+</tr>
+`
+
+})
+
+}
+
+load()
+
+</script>
